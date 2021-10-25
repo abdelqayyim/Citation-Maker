@@ -1,0 +1,2 @@
+# Citation Maker 
+This is a website that allows students to easily make their citations while completing school assignments. The website attempts to saves the user created citations on an MySQL server locally on the user's computer. Because this will not be possible for the majority of students as they do not have local SQL servers open, the website will save the citation on the user's local storage. 
