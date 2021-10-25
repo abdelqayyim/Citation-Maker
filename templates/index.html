@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="/fontawesome-free/css/all.css" rel="stylesheet" type="text/css">
+    <title>Citation-Maker</title>
+</head>
+<body>   
+    <div class="mode">
+        <input type="checkbox" name="checkbox" id="switch">
+    </div>
+    <div class="input-box">
+        <form action="{{url_for('home')}}" method="POST" class="form" autocomplete="off" id="form">
+            <div class="boxes">
+                <label for="last-name">Last-Name</label>
+                <input type="text" name="last-name" id="last-name" class="last-name" >
+            </div>
+            
+            <div class="boxes">
+                <label for="first-name">First-Name</label>
+                <input type="text" name="first-name" id="first-name" >
+            </div>
+
+            <div class="boxes">
+                <label for="title">Title</label>
+                <input type="text" name="title" id="title" >
+            </div>
+
+            <div class="boxes">
+                <label for="Publisher">Publisher</label>
+                <input type="text" name="Publisher" id="Publisher" >
+            </div>
+
+            <div class="boxes">
+                <label for="date-published">Date Published</label>
+                <input type="date" name="date-published" id="date-published" >
+            </div>
+            
+            <div class="boxes">
+                <label for="date-accessed">Date Accessed</label>
+                <input type="date" name="date-accessed" id="date-accessed"  >
+            </div>
+ 
+            <div class="boxes">
+                <label for="url">URL</label>
+                <input type="link" name="url" id="url" >
+            </div>
+
+            <div class="type">
+                <label for="citation-type">Citation Type</label>
+                <select name="citation-type" id="citation-type" class="type-input">
+                    <option value="MLA" label="MLA">MLA</option>
+                    <option value="Harvard" label="Harvard">Harvard</option>
+                    <option value="APA" label="APA">APA</option>
+                </select>
+            </div>
+            <button type="submit" class="cite-btn" id="cite" form="form", formmethod="POST" onsubmit="">Cite</button>
+        </form>
+        <!-- <button type="submit" form="yes" formmethod="POST" class="cite-btn">Cite</button> -->
+
+        <!-- <button type="submit" class="cite-btn" form="yes" formmethod="POST">Cite</button> -->
+    </div>
+    <div class="pop-up">
+        The Citation Has been Copied to ClipBorad!
+    </div>
+    <!-- this is what I used to create the blueprint for how each citation would look like -->
+    <!-- <div class="citations" id="citations-1">
+        <div class="citation" id="citation-1">
+            <textarea name="textArea" id="textArea-1">Abdel Qayyim, Maazou Yahaya. Lorem, ipsum dolor. BBC World News, 2021. https://www.w3schools.com/css/css3_2dtransforms.asp</textarea>
+        </div>
+        <div class="buttons">
+            <button class="delete-button" onclick="deleteCitation(1)"><i class="far fa-trash-alt icon"></i>Delete</button>
+            <button class="copy-button" onclick="copyToClickBoard(1)"><i class="far fa-copy icon"  id="citation-1-button"></i></i>Copy</button>
+        </div>
+        
+    </div> -->
+</body>
+    <script src="/static/index.js"></script>
+</html>
+

@@ -1,0 +1,242 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* background-color: #EFE2BA; */
+    background-color: #91C4F2;
+    color: black;
+}
+.input-box{
+    background-color: #91C4F2;
+    height: 20vh;
+    position: relative;
+    width: 90%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 15px;
+    margin-bottom: 10px;
+}
+.form{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 30px 0;
+    /* background-color: #EFE2BA; */
+    background-color: #91C4F2;
+    height: 80%;
+}
+input{
+    width: 80%;
+    border-radius: 10px;
+    outline: none;
+    border: 1px;
+    height: 50px;
+    text-align: center;
+    background-color: #8CA0D7;
+    color: black;
+    font-weight: bold;
+    padding: 0 5px;
+    transition-duration: 0.5s;
+}
+input:valid{
+    background-color: #9D79BC;
+    color: black;
+    transform: scale(1.1);
+}
+
+.boxes{
+    width: 15%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+}
+label{
+    font-weight: bold;
+    font-size: 18px;
+}
+.button{
+    color: red;
+    
+}
+.type{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.type-input{
+    border-radius: 15px;
+}
+.cite-btn{
+    position: absolute;
+    left: 45%;
+    width: 100px;
+    height: 40px;
+    bottom: 15px;
+    border: 15px;
+    transition: ease-in;
+    transition-duration: 1;
+    background-color: #8CA0D7;
+    border-radius: 10px;
+}
+.cite-btn:hover{ 
+    transform: scale(1.1);
+    /* transform: translateX(-50%); */
+}
+.cite-btn:active{
+    background-color: #9D79BC;
+}
+span{
+    font-style: italic;
+    background-color: inherit;
+}
+a{
+    background-color: inherit;
+}
+.citations{
+    position: relative;
+    display: flex;
+    align-items: top;
+    /* background-color: #C5CBE3; */
+    width: 70%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 1px solid #99a0be;
+    flex-direction: column;
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+    background-color: rgba(145,196,242, 0.075);
+    box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 8px;
+    border: 2px rgba(255,255,255,0.4) solid;
+    border-bottom: 2px rgba(40,40,40,0.35) solid;
+    border-right: 2px rgba(40,40,40,0.35) solid;
+    margin-bottom: 5px;
+}
+.buttons{
+    background-color: transparent;
+    margin-top: 0px;
+}
+.delete-button{
+    position: relative;
+    width: 10%;
+    height: 40px;
+    background-color: #9D79BC;
+    font-size: 15px;
+    font-weight: bold;
+    color: black;
+    float: right;
+    border-radius: 10px;
+    margin-right: 3px;
+    margin-bottom: 3px;
+}
+.copy-button{
+    position: relative;
+    width: 10%;
+    height: 40px;
+    background-color: #9D79BC;
+    font-size: 15px;
+    font-weight: bold;
+    color: black;
+    float: right;
+    margin-right: 5px;
+    border-radius: 10px;
+}
+.icon{
+    margin-right: 5px;
+    color: black;
+    border: none;
+    background-color: transparent;
+    font-weight: bold;
+}
+.citation{
+    display: inline-block;
+    padding: 10px;
+    font-size: 25px;
+    position: relative;
+    background-color: inherit;
+    border-radius: 15px;
+    margin-bottom: 3px;
+    overflow: hidden;
+    word-wrap: break-word;
+}
+textArea{
+    border: none;
+    width: 100%;
+    background-color: inherit;
+    resize: none;
+    padding: 15px 5px;
+    margin-bottom: 0px;
+    word-wrap: break-word;
+    pointer-events: none;
+}
+.pop-up{
+    position: fixed;
+    border-radius: 10px;
+    width: 40%;
+    background-color: #9D79BC;
+    left: 50%;
+    transform: translateX(-50%) scale(0);
+    padding: 65px;
+    font-size: 24px;
+    pointer-events: none;
+    transition-duration: 250ms;
+    transition-timing-function: ease-in;
+    z-index: 10;
+}
+.pop-up.active{
+    transform: translate(-50%) scale(1);
+}
+#switch{
+    position: relative;
+    height: 20px;
+    width: 50px;
+    border: none;
+    border-radius: 20px;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    /* the -webkit-apperance I beleive takes away the restrictions on the checkbox type so you can customize it */
+    height: 20px;
+    width: 50px;
+    border: none;
+    border-radius: 20px;
+    box-shadow: inset 1px 1px 1px gray,
+                inset -1px -1px 1px gray;
+    background-color: #2F323A;
+    outline: none;
+    transition-duration: 0.6s;
+    transition-timing-function: ease-in;
+}
+#switch:before{
+    content: ""; /*You need this when you have :before */
+    position: absolute;  /*this is important so you can actuall see it */
+    width: 23px;
+    height: 23px;
+    background-color: white;
+    border-radius: 50%;
+    left: -2px;
+    bottom: -2px;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
+}
+
+#switch:checked{
+    background-color: #91C4F2;
+}
+#switch:checked:before{   /*The checked has to to be right after input for it to target the before */
+    left: 28px;
+}
+.mode{
+    position: relative;
+    float: right;
+    margin: 0.7% 0.7% 0 0;
+}
+
+/* -----------------Next Steps---------------
+Create a dark-mode class that changes the text and input colors of the page */
+
+
+/* #2F323A
+#77567A
+#C47AC0
+#E39EC1
+#DEBAC0 */
