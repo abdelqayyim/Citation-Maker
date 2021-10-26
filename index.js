@@ -31,26 +31,30 @@ function printHello() {    //Now add text and decorations
     datePublished.defaultValue = 'undefined';
     dateAccessed.defaultValue = 'undefined';
     url.defaultValue = 'undefined';
-    var count = document.cookie.split(/; */)[0];
-    var currentCitation = parseInt(count.substring(count.indexOf("=") + 1));
+    // var count = document.cookie.split(/; */)[0];
+    // var currentCitation = parseInt(count.substring(count.indexOf("=") + 1));
+
+    // console.log(typeof currentCitation);
 
     // console.log((typeof parseInt(currentCitation)));
+    addToPage(num);
     
-    var site = `<div class="citations" id="citations-${currentCitation}"><div class="citation" id="citation-${currentCitation}"><textarea name="textArea" id="textArea-${currentCitation}">${lastName.value}, ${firstName.value}. "${title.value}". ${publisher.value}, Published ${datePublished.value}. Accessed on ${dateAccessed.value}. ${citationType.value}</textarea></div><div class="buttons"><button class="delete-button" onclick="deleteCitation(${currentCitation})"><i class="far fa-trash-alt icon"></i>Delete</button><button class="copy-button" onclick="copyToClickBoard(${currentCitation})"><i class="far fa-copy icon"  id="citation-${currentCitation}-button"></i></i>Copy</button></div></div>`;
+    var site = `<div class="citations" id="citations-${num}"><div class="citation" id="citation-${num}"><textarea name="textArea" id="textArea-${num}">${lastName.value}, ${firstName.value}. "${title.value}". ${publisher.value}, Published ${datePublished.value}. Accessed on ${dateAccessed.value}. ${citationType.value}</textarea></div><div class="buttons"><button class="delete-button" onclick="deleteCitation(${num})"><i class="far fa-trash-alt icon"></i>Delete</button><button class="copy-button" onclick="copyToClickBoard(${num})"><i class="far fa-copy icon"  id="citation-${num}-button"></i></i>Copy</button></div></div>`;
 
-    addToLocalStorage(lastName.value, site);
+    addToCookie(lastName.value, site);
     document.cookie = `count=${num+1}`;
     console.log(`just changed it`);
 }
-function addToLocalStorage(author, citation) {
+function addToCookie(author, citation) {
     document.cookie = `${author}=${citation}`;
-    addToPage();
+    // addToPage(author);
 }
-function addToPage() {
+function addToPage(number) {
     var all = document.cookie.split(/; */);
     for (var i = 0; i < all.length-1; i++){
         var citations = document.createElement("div");
-        var ok = all[i];
+        citations.className = "a"+i;
+        // var ok = all[i];
         citations.innerHTML = all[i].substring(all[i].indexOf("=") + 1);
         // console.log(ok[i].substring(ok[i].indexOf("=") + 1));
         document.body.appendChild(citations);
@@ -59,26 +63,34 @@ function addToPage() {
 
 
 
-// // function CopyAllCitations{
+// function CopyAllCitations{
 
-// // }
-// // function copyToClickBoard(number){
-// //     var content = document.getElementById(`textArea-${number}`).innerHTML;
+// }
+function copyToClickBoard(number){
+    var content = document.getElementById(`textArea-${number}`).innerHTML;
 
-// //     navigator.clipboard.writeText(content)
-// //         .then(() => {
-// //         console.log("Text copied to clipboard...")
-// //     })
-// //         .catch(err => {
-// //         console.log('Something went wrong', err);
-// //     })
+    navigator.clipboard.writeText(content)
+        .then(() => {
+        console.log("Text copied to clipboard...")
+    })
+        .catch(err => {
+        console.log('Something went wrong', err);
+    })
 
-// //     var copyPopUp = document.querySelector('.pop-up');
-// //     copyPopUp.classList.add('active');
-// //     setTimeout(() => copyPopUp.classList.remove('active'), 1000);
+    var copyPopUp = document.querySelector('.pop-up');
+    copyPopUp.classList.add('active');
+    setTimeout(() => copyPopUp.classList.remove('active'), 1000);
  
-// // }
-// // function deleteCitation(number) {
-// //     var citation = document.getElementById(`citations-${number}`);
-// //     citation.remove();
-// // }
+}
+function deleteCitation(number) {
+    var citation = document.getElementById(`citations-${number}`);
+    var lastname = citation.innerHTML.split(">")[2].split(",")[0];
+    var text = document.querySelector("."+"a"+number);
+    console.log(lastname);
+    document.cookie = (`${lastname}=${text}; expires=` + new Date(2020, 1, 1));
+    var num = document.querySelectorAll(".citations").length;
+    console.log(num);
+    document.cookie = `count=${num-1}`;
+    citation.remove();
+
+}

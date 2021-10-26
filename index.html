@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="style.css">
     <link href="/fontawesome-free/css/all.css" rel="stylesheet" type="text/css">
     <title>Citation-Maker</title>
 </head>
@@ -13,7 +13,7 @@
         <input type="checkbox" name="checkbox" id="switch">
     </div>
     <div class="input-box">
-        <form action="{{url_for('home')}}" method="POST" class="form" autocomplete="off" id="form">
+        <form  action="index.html" method="GET" class="form" autocomplete="off" id="form">
             <div class="boxes">
                 <label for="last-name">Last-Name</label>
                 <input type="text" name="last-name" id="last-name" class="last-name" >
@@ -57,7 +57,7 @@
                     <option value="APA" label="APA">APA</option>
                 </select>
             </div>
-            <button type="submit" class="cite-btn" id="cite" form="form", formmethod="POST" onsubmit="">Cite</button>
+            <button type="submit" class="cite-btn" id="cite" form="form", formmethod="GET" onsubmit="this.preventDefault()">Cite</button>
         </form>
         <!-- <button type="submit" form="yes" formmethod="POST" class="cite-btn">Cite</button> -->
 
@@ -78,6 +78,6 @@
         
     </div> -->
 </body>
-    <script src="/static/index.js"></script>
+    <script src="index.js"></script>
 </html>
 
