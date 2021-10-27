@@ -3,27 +3,33 @@
     padding: 0;
     box-sizing: border-box;
     /* background-color: #EFE2BA; */
+}
+body{
+    /* position: relative;
+    display: block; */
     background-color: #91C4F2;
     color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* position: absolute; */
 }
 .input-box{
-    background-color: #91C4F2;
-    height: 20vh;
+    background-color: transparent;
     position: relative;
     width: 90%;
-    left: 50%;
-    transform: translateX(-50%);
     border-radius: 15px;
     margin-bottom: 10px;
 }
 .form{
+    position: relative;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    padding: 30px 0;
-    /* background-color: #EFE2BA; */
-    background-color: #91C4F2;
-    height: 80%;
+    padding: 30px 0px;
+    background-color: transparent;
+    margin-bottom: 30px;
 }
 input{
     width: 80%;
@@ -32,15 +38,28 @@ input{
     border: 1px;
     height: 50px;
     text-align: center;
-    background-color: #8CA0D7;
-    color: black;
     font-weight: bold;
+    background-color: #9D79BC;
     padding: 0 5px;
     transition-duration: 0.5s;
 }
-input:valid{
-    background-color: #9D79BC;
+/* the comma means "and" */
+input:not(:placeholder-shown){ 
     color: black;
+    background-color: #845ca7;
+    transform: scale(1.1);
+}
+input:hover{
+    transform: scale(1.1);
+}
+input.dark-mode{
+    background-color: #845ca7;
+    color: white;
+}
+input[type="date"]{
+    transform: scale(1.0);
+}
+input[type="date"]:hover{
     transform: scale(1.1);
 }
 
@@ -50,14 +69,11 @@ input:valid{
     flex-direction: column;
     text-align: center;
     align-items: center;
+    background-color: inherit;
 }
 label{
     font-weight: bold;
     font-size: 18px;
-}
-.button{
-    color: red;
-    
 }
 .type{
     display: flex;
@@ -78,6 +94,8 @@ label{
     transition-duration: 1;
     background-color: #8CA0D7;
     border-radius: 10px;
+    transition-duration: 0.2s;
+    top: 100%;
 }
 .cite-btn:hover{ 
     transform: scale(1.1);
@@ -94,10 +112,9 @@ a{
     background-color: inherit;
 }
 .citations{
-    position: relative;
+    position:relative;
     display: flex;
     align-items: top;
-    /* background-color: #C5CBE3; */
     width: 70%;
     left: 50%;
     transform: translateX(-50%);
@@ -111,6 +128,11 @@ a{
     border-bottom: 2px rgba(40,40,40,0.35) solid;
     border-right: 2px rgba(40,40,40,0.35) solid;
     margin-bottom: 5px;
+    color: inherit;
+}
+.citee{
+    width: 70%;
+    margin-top: 5px;
 }
 .buttons{
     background-color: transparent;
@@ -128,6 +150,7 @@ a{
     border-radius: 10px;
     margin-right: 3px;
     margin-bottom: 3px;
+    color: inherit;
 }
 .copy-button{
     position: relative;
@@ -140,10 +163,14 @@ a{
     float: right;
     margin-right: 5px;
     border-radius: 10px;
+    color: inherit;
+}
+.button.dark-mode{
+    background-color: #C47AC0;
 }
 .icon{
     margin-right: 5px;
-    color: black;
+    color: inherit;
     border: none;
     background-color: transparent;
     font-weight: bold;
@@ -153,11 +180,12 @@ a{
     padding: 10px;
     font-size: 25px;
     position: relative;
-    background-color: inherit;
+    background-color: transparent;
     border-radius: 15px;
     margin-bottom: 3px;
     overflow: hidden;
     word-wrap: break-word;
+    color: inherit;
 }
 textArea{
     border: none;
@@ -168,14 +196,23 @@ textArea{
     margin-bottom: 0px;
     word-wrap: break-word;
     pointer-events: none;
+    color: inherit;
 }
 .pop-up{
-    position: fixed;
+    position: absolute;
     border-radius: 10px;
     width: 40%;
     background-color: #9D79BC;
-    left: 50%;
-    transform: translateX(-50%) scale(0);
+    position: absolute; 
+    left: 0; 
+    right: 0; 
+    margin-left: auto; 
+    margin-right: auto; 
+    width: 50%; /* Need a specific value to work */
+    align-content: center;
+    transform: scale(0);
+
+
     padding: 65px;
     font-size: 24px;
     pointer-events: none;
@@ -184,12 +221,12 @@ textArea{
     z-index: 10;
 }
 .pop-up.active{
-    transform: translate(-50%) scale(1);
+    transform: scale(1);
 }
-#switch{
+#switchh{
     position: relative;
     height: 20px;
-    width: 50px;
+    width: 100%;
     border: none;
     border-radius: 20px;
     box-sizing: border-box;
@@ -206,10 +243,10 @@ textArea{
     transition-duration: 0.6s;
     transition-timing-function: ease-in;
 }
-#switch:before{
+#switchh:before{
     content: ""; /*You need this when you have :before */
     position: absolute;  /*this is important so you can actuall see it */
-    width: 23px;
+    width: 20px;
     height: 23px;
     background-color: white;
     border-radius: 50%;
@@ -219,24 +256,63 @@ textArea{
     transition-timing-function: ease-in-out;
 }
 
-#switch:checked{
+#switchh:checked{
     background-color: #91C4F2;
 }
-#switch:checked:before{   /*The checked has to to be right after input for it to target the before */
+#switchh:checked:before{   /*The checked has to to be right after input for it to target the before */
     left: 28px;
 }
 .mode{
-    position: relative;
+    position: absolute;
     float: right;
-    margin: 0.7% 0.7% 0 0;
+    margin: 0.7% 4% 0 0;
+    width: 30px;
+    top: 0px;
+    right: 0px;
+    z-index: 10;
+}
+.dark-mode{
+    color: white;
+    background-color: #2F323A;
 }
 
 /* -----------------Next Steps---------------
 Create a dark-mode class that changes the text and input colors of the page */
+.cite-btn.dark-mode{
+    color: white;
+    background-color: #C47AC0;
+}
 
-
-/* #2F323A
-#77567A
-#C47AC0
-#E39EC1
-#DEBAC0 */
+@media only screen and (max-width: 862px){
+    .form{
+        display:flex;
+        flex-direction: column
+    }
+    .boxes{
+        width: 100%;
+    }
+    .input-box{
+        display: block;
+    }
+    select[name="citation-type"]{
+        width: 70%;
+        align-self: center;
+    }
+    label[for="citation-type"]{
+        align-self: center;
+    }
+    .butto{
+        font-size: 8px;
+    }
+    .copy-button, .delete-button{
+        width: 20%;
+    }
+    .mode{
+        margin: 0.7% 10% 0 0;
+    }
+}
+@media only screen and (max-width: 800px){
+    .citee{
+        width: 100%;
+    }
+}
